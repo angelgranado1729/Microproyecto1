@@ -13,52 +13,52 @@ let aux = false;
 
 
 //Mezcla las cartas aleatoriamente
-function mezclar() {
-    tarjetas.forEach(tarjeta => {
-        let random = Math.floor(Math.random() * 12);
-        tarjeta.style.order = random;
-    });
-}
+// function mezclar() {
+//     tarjetas.forEach(tarjeta => {
+//         let random = Math.floor(Math.random() * 12);
+//         tarjeta.style.order = random;
+//     });
+// }
 
-mezclar();
+// mezclar();
 
-// Funcion para comenzar el juego
-function comenzarJuego() {
-    comenzar.style.display = "none";
-    reiniciar.style.display = "block";
-    let segundos = 0;
-    let minutos = 0;
-    let horas = 0;
-    let tiempo_juego = setInterval(() => {
-        tiempo.innerHTML = `${horas} : ${minutos} : ${segundos}`;
-        segundos++;
-        if (segundos === 60) {
-            segundos = 0;
-            minutos++;
-        }
-        if (minutos === 60) {
-            minutos = 0;
-            horas++;
-        }
-    }, 1000);
-    // Funcion para reiniciar el juego
-    reiniciar.addEventListener("click", () => {
-        clearInterval(tiempo_juego);
-        comenzar.style.display = "block";
-        reiniciar.style.display = "none";
-        tiempo.innerHTML = "0 : 0 : 0";
-        segundos = 0;
-        minutos = 0;
-        horas = 0;
-        movimientos.innerHTML = 0;
-        mezclar();
-        tarjetas.forEach(tarjeta => {
-            tarjeta.classList.remove("voltear");
-        });
-    });
-}
+// // Funcion para comenzar el juego
+// function comenzarJuego() {
+//     comenzar.style.display = "none";
+//     reiniciar.style.display = "block";
+//     let segundos = 0;
+//     let minutos = 0;
+//     let horas = 0;
+//     let tiempo_juego = setInterval(() => {
+//         tiempo.innerHTML = `${horas} : ${minutos} : ${segundos}`;
+//         segundos++;
+//         if (segundos === 60) {
+//             segundos = 0;
+//             minutos++;
+//         }
+//         if (minutos === 60) {
+//             minutos = 0;
+//             horas++;
+//         }
+//     }, 1000);
+//     // Funcion para reiniciar el juego
+//     reiniciar.addEventListener("click", () => {
+//         clearInterval(tiempo_juego);
+//         comenzar.style.display = "block";
+//         reiniciar.style.display = "none";
+//         tiempo.innerHTML = "0 : 0 : 0";
+//         segundos = 0;
+//         minutos = 0;
+//         horas = 0;
+//         movimientos.innerHTML = 0;
+//         mezclar();
+//         tarjetas.forEach(tarjeta => {
+//             tarjeta.classList.remove("voltear");
+//         });
+//     });
+// }
 
-comenzar.addEventListener("click", comenzarJuego);
+// comenzar.addEventListener("click", comenzarJuego);
 
 
 // Compara las imagenes de las tarjetas
