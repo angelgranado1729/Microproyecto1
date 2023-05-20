@@ -44,6 +44,9 @@ body {
         height: 95vh;
         width: 90vw;
     }
+    .tarjeta .parte-posterior img{
+        max-width: 12.5vw;
+    }
 }
 
 @media screen and (min-width: 501px) {
@@ -51,17 +54,31 @@ body {
         height: 550px;
         width: 500px;
     }
+    .tarjeta .parte-posterior img{
+        max-width: 85px;
+    }
 }
 
-.stats {
+.stats, .time-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     margin-bottom: 15px;
 }
 
 .stats span {
+    font-size: 3.5vh;
+    margin: 0 1vh;
+}
+
+.time-container {
+    justify-content: flex-start;
+}
+.time-container span {
+    font-size: 3.5vh;
+    margin: 0 1vh;
+}
+
+.material-symbols-outlined{
     font-size: 3.5vh;
     margin: 0 1vh;
 }
@@ -101,6 +118,9 @@ button {
     transition: transform 0.25s linear;
 }
 
+button:hover {
+    transform: scale(1.2);
+}
 .tarjetas, .tarjeta, .vista {
     display: flex;
     align-items: center;
@@ -186,9 +206,6 @@ button {
     font-size: 10vh;
 }
 
-.tarjeta .parte-posterior img{
-    max-width: 12.5vw;
-}
 
 .tarjeta .parte-posterior {
     transform: rotateY(180deg);
