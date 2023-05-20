@@ -13,17 +13,6 @@
     'opsz' 48;
 }
 
-/* TENGO QUE ARREGLAR ESTO PA QUE SEA RESPONSIVE */
-/* @media (max-width: 400px) {
-    body {
-        flex-direction:  row;
-    }
-    .container, .stats {
-        width: 80%;
-        width: 100%;
-    }
-} */
-
 body {
     background: #ff8800;
     display: flex;
@@ -48,6 +37,18 @@ body {
     flex-direction: column;
 }
 
+.stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.stats span {
+    font-size: 3.5vh;
+    margin: 0 1vh;
+}
 
 .tablero {
     background: #fff;
@@ -61,8 +62,9 @@ body {
 .controles {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 25px;
+    justify-content: space-between;
+    width: 95%;
+    margin-top: 15px;
 }
 
 button {
@@ -160,11 +162,11 @@ button {
 
 .tarjeta .parte-frontal span {
     color: #ff8800;
-    font-size: 75px;
+    font-size: 10vh;
 }
 
 .tarjeta .parte-posterior img{
-    max-width: 95px;
+    max-width: 13vw;
 }
 
 .tarjeta .parte-posterior {
