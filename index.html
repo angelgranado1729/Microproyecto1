@@ -17,7 +17,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 </head>
-<body>  
+<body>
+    <!-- Container inicio -->
+    <div class="container-inicio">
+        <h1>Memory Card</h1>
+        <label for="username">Ingresa tu nombre de usuario</label>
+        <input type="text" id="username" placeholder="Nombre de usuario">
+        <button id="start">Iniciar Juego</button>
+        <p id="result"></p>
+    </div>
+    <!-- Container principal -->
     <div class="container ocultar">
         <!-- Estadisticas -->
         <div class="stats">
@@ -28,7 +37,6 @@
                 <span id="minutes">3</span>:<span id="seconds">00</span>
             </div>    
         </div>
-
         <!-- Tablero -->
         <div class="tablero">
             <ul class="tarjetas">
@@ -242,26 +250,21 @@
                 </li>
             </ul>
         </div>
-        
+        <!-- Controles  -->
         <div class="controles">
             <div class="time-container">
                 <span class="material-symbols-outlined">
                     star
                 </span>
                 <div id="score">
-                    <span id="points">0</span>
+                    <span id="puntos">0</span>
                 </div>
             </div>
             <button id="reset">Reiniciar</button>
         </div>        
     </div> 
-    <div class="container-inicio">
-        <button id="start">Iniciar Juego</button> 
-        <p id="result"></p>
-    </div>
-    <div class="container-final ocultar">
-    </div>
-
+    <!-- Muestra el mensaje de finalizacion del juego -->
+    <div class="container-final ocultar"></div>
     <!-- script de javascript -->
     <script src="app.js"></script>
 </body>

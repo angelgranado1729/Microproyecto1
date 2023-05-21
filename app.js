@@ -7,6 +7,7 @@ const tiempo = document.getElementById("time");
 const reiniciar = document.getElementById("reset");
 const iniciar = document.getElementById("start");
 const points = document.getElementById("score");
+const username = document.getElementById("username");
 // Tarjetas seleccionadas
 let carta_1;
 let carta_2;
@@ -23,16 +24,20 @@ let aciertos = 0;
 // Puntaje
 let puntaje = 0;
 // Usuario
-let usuario = "Yop";
+let usuario;
 
 
 /**
  * Inicializa el juego al mezclar las tarjetas.
  */
 function iniciar_juego() {
-  mezclar();
-  aciertos = 0;
-}
+    container_inicio.classList.add("ocultar");
+    container_principal.classList.remove("ocultar");
+    intervalo = setInterval(cronometro, 1000);
+    tiempo.innerHTML = `<span id="minutes">3</span>:<span id="seconds">00</span>`;
+    points.innerHTML = `<span id="puntos">0</span>`;
+    mezclar();
+  }
 
 ////////////////////// Eventos //////////////////////
 
@@ -40,14 +45,22 @@ function iniciar_juego() {
  * Evento al hacer clic en el botón "Iniciar".
  */
 iniciar.addEventListener("click", () => {
-  container_inicio.classList.add("ocultar");
-  container_principal.classList.remove("ocultar");
-  intervalo = setInterval(cronometro, 1000);
-  tiempo.innerHTML = `<span id="minutes">3</span>:<span id="seconds">00</span>`;
-  points.innerHTML = `<span id="puntos">0</span>`;
-  iniciar_juego();
-});
-
+    const usuario = username.value.trim();
+    if (usuario !== "") {
+      username.classList.remove("error");
+      setTimeout(() => {
+        iniciar_juego();
+      }, 150);
+    } else {
+      username.value = "";
+      username.placeholder = "Nombre de usuario";
+      username.classList.add("error");
+      setTimeout(() => {
+        alert("Ingrese un nombre de usuario para iniciar el juego");
+        }, 100);
+    }
+  });
+  
 /**
  * Evento al hacer clic en el botón "Reiniciar".
  */
@@ -178,12 +191,21 @@ function reiniciarTiempo() {
  * Detiene el juego y muestra el mensaje final.
  */
 function detener_juego() {
+    clearInterval(intervalo);
     container_principal.classList.add("ocultar");
     container_final.classList.remove("ocultar");
     if (aciertos === 8) {
       container_final.innerHTML = `<div class="mensaje-final">
-                                        <h2 id="Mensaje">Felicitaciones ${usuario}!!!</h2> 
+                                        <h2 id="mensaje">Felicitaciones ${usuario}!!!</h2> 
                                         <p>Has logrado ${calcular_puntaje()} puntos</p>
+                                        <h3>Top puntajes registrados</h3>
+                                        <div class="tabla_puntajes">
+                                            <ol id="puntajes">
+                                                <li>${usuario} - ${calcular_puntaje()}</li>
+                                                <li>${usuario} - ${calcular_puntaje()}</li>
+                                                <li>${usuario} - ${calcular_puntaje()}</li>
+                                            </ol>
+                                        </div>
                                         <button id="reiniciar" onclick="container_principal.classList.remove('ocultar');
                                         container_final.classList.add('ocultar');
                                         reiniciar_config()">Reiniciar</button>                                
