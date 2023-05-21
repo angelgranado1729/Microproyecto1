@@ -62,4 +62,3 @@ Se necesita que usted desarrolle un juego de memoria interactivo y atractivo. El
 - Uso de Localstorage para guardar y recuperar puntajes y usuarios: 2 pts
 - Funcionalidad de reinicio: 1 pt
 - Apreciación (esfuerzo y estética): 3 pts
-

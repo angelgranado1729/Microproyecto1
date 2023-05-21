@@ -460,16 +460,17 @@ button:hover {
 #user {
     font-size: 18px;
     font-weight: bold;
-    color: #110a06;
+    color: #000000;
 }
 
 #ptos{
     font-size: 16px;
+    color: #000000;
 }
 
 #fecha {
-    font-size: 12px;
-    color: #fff;
+    font-size: 14px;
+    color: #000000;
 }
   
   @media screen and (max-width: 480px) {

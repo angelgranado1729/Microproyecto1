@@ -298,7 +298,7 @@ function generarMensajeFinal() {
     mensaje_final += `<li id="top-player">
     <div id="user">${index + 1}. Jugador: ${element.username}</div>
     <div id="ptos">Score: ${element.score} puntos</div>
-    <div id="fecha">(${fechaHoraString})</div>
+    <div id="fecha">Fecha: ${fechaHoraString}</div>
     </li>`;
   });
   return mensaje_final;
