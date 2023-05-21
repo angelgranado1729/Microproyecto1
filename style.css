@@ -436,7 +436,6 @@ button:hover {
     border-radius: 4px;
     margin-top: 3px;
     margin-bottom: 20px;
-    /* background: #ff8800; */
     width: 100%;
     max-width: 400px;
   }
@@ -451,25 +450,25 @@ button:hover {
     border-radius: 6px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     width: 280px;
-    height: 70px;
-    padding-bottom: 5px;
+    height: 60px;
+    padding-bottom: 4px;
     padding-top: 3px;
     background: #ff8800;
 } 
 
 #user {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
     color: #000000;
 }
 
 #ptos{
-    font-size: 16px;
+    font-size: 14px;
     color: #000000;
 }
 
 #fecha {
-    font-size: 14px;
+    font-size: 12px;
     color: #000000;
 }
   

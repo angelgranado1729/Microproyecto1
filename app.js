@@ -168,9 +168,7 @@ function voltear(e) {
  * @returns {number} - Puntaje obtenido.
  */
 function calcular_puntaje() {
-  const puntaje_max = 500;
-  puntaje = parseFloat((puntaje_max * (1-(tiempo_juego / 180000)).toFixed(2)));
-  return puntaje;
+  return Math.round(500 * (1 - (tiempo_juego / 180000)));
 }
 
 ////////////////////// Función del cronómetro //////////////////////
@@ -225,12 +223,11 @@ function reiniciarTiempo() {
  * Detiene el juego y muestra el mensaje final.
  */
 function detener_juego() {
+  puntaje = calcular_puntaje();
   aux++;
   clearInterval(intervalo);
-  puntaje = calcular_puntaje();
   container_principal.classList.add("ocultar");
   container_final.classList.remove("ocultar");
-  guardarUsuario();
 
   var mensajeFinalHTML = '';
   var aciertosText = aciertos === 1 ? "acierto" : "aciertos";
@@ -238,14 +235,16 @@ function detener_juego() {
   if (aciertos === 8) {
     mensajeFinalHTML = `
       <h2 id="mensaje">¡Felicitaciones ${usuario}!</h2> 
-      <p>Has logrado ${calcular_puntaje()} puntos</p>`;
+      <p>Has logrado ${puntaje} puntos</p>`;
   } else {
+    puntaje = 0;
     mensajeFinalHTML = `
       <h2 id="mensaje">¡Has perdido!</h2>
       <h3 id="mensaje__h3-p">Se acabó el tiempo, ${usuario}</h3>
       <p>Obtuviste ${aciertos} ${aciertosText}</p>`;
   }
 
+  guardarUsuario();
   container_final.innerHTML = `
       ${mensajeFinalHTML}
       <h3>Top puntajes registrados</h3>
