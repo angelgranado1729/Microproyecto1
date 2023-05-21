@@ -251,23 +251,35 @@ button:hover {
 }
 
 .mensaje-final {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     padding: 20px;
     background-color: #f2f2f2;
     border-radius: 6px;
     box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    width: 70vw;
   }
   
   .mensaje-final h2 {
-      font-size: 25px;
+      font-size: 35px;
       color: #000000;
-      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 5px;
   }
+
+    .mensaje-final h3 {
+        font-size: 20px;
+        color: #000000;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
   
   .mensaje-final p {
     font-size: 17px;
     color: #504c4c;
-    padding-bottom: 7px;
+    margin-bottom: 8px;
   }
   
   .tabla_puntajes {
@@ -275,13 +287,14 @@ button:hover {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* background: #110a06; */
     padding: 8px;
     border-radius: 4px;
     box-shadow: 2px 2px 10px rgba(48, 48, 48, 0.25);
-    margin-top: 20px;
+    margin-top: 3px;
     margin-bottom: 20px;
     background: #ff8800;
+    width: 97%;
+
   }
   
   #puntajes {
@@ -331,29 +344,51 @@ button:hover {
   .container-inicio input[type="text"] {
     padding: 8px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: none; /* Elimina todos los bordes */
+    border-bottom: 3px solid #0000008a; /* Agrega un borde inferior negro */
+    border-radius: 5px; /* Elimina el redondeo de bordes */
     width: 200px;
     margin-bottom: 10px;
-}
-
-.container-inicio p {
-    font-size: 16px;
-    color: #333;
-}
-
-  #start {
-    margin-top: 7px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Agrega una sombra en la parte inferior */
   }
   
   #username.error {
-    border: 1px solid red;
-    color: red;
-    box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.726);
-  }
-
-  #username.error::placeholder {
-    color: red;
+    border-bottom: 1px solid red; /* Cambia el color del borde inferior a rojo */
+    box-shadow: 0px 2px 5px rgba(255, 0, 0, 0.2); /* Agrega una sombra roja en la parte inferior */
   }
   
+  #username::placeholder {
+    color: #0000008c;
+  }
+  
+  #username:focus {
+    outline: none; /* Elimina el contorno de foco predeterminado */
+    border: none; /* Elimina todos los bordes */
+    border-bottom: 3px solid #0000008a; /* Agrega un borde inferior negro */
+    border-radius: 5px; /* Elimina el redondeo de bordes */
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); /* Agrega una leve sombra */
+    color: #000000;
+  }
+  
+  #username.error:focus {
+    outline: none; /* Elimina el contorno de foco predeterminado */
+    border: none; /* Elimina todos los bordes */
+    border-bottom: 1px solid red; /* Cambia el color del borde inferior a rojo */
+    border-radius: 5px; /* Elimina el redondeo de bordes */
+    box-shadow: 0px 2px 5px rgba(255, 0, 0, 0.2); /* Agrega una sombra roja en la parte inferior */
+    color: #000000;
+  }
 
+
+  #username:focus::placeholder {
+    color: #000000cc; /* Color del placeholder más oscuro al seleccionar */
+  }
+  
+  #username.error:focus::placeholder {
+    color: rgba(255, 0, 0, 1); /* Color del placeholder más oscuro al seleccionar */
+  }
+  
+  #username.error::placeholder {
+    color: rgba(255, 0, 0, 0.712);
+  }
+  

@@ -24,7 +24,7 @@ let aciertos = 0;
 // Puntaje
 let puntaje = 0;
 // Usuario
-let usuario;
+let usuario = "";
 
 
 /**
@@ -37,6 +37,7 @@ function iniciar_juego() {
     tiempo.innerHTML = `<span id="minutes">3</span>:<span id="seconds">00</span>`;
     points.innerHTML = `<span id="puntos">0</span>`;
     mezclar();
+    detener_juego();
   }
 
 ////////////////////// Eventos //////////////////////
@@ -45,21 +46,31 @@ function iniciar_juego() {
  * Evento al hacer clic en el botón "Iniciar".
  */
 iniciar.addEventListener("click", () => {
-    const usuario = username.value.trim();
+    usuario = username.value.trim();
     if (usuario !== "") {
-      username.classList.remove("error");
-      setTimeout(() => {
-        iniciar_juego();
-      }, 150);
+        if (usuario.length > 15) {
+            username.value = "";
+            username.placeholder = "Menos de 16 caracteres";
+            username.classList.add("error-longitud");
+            setTimeout(() => {
+                alert("Ingrese un nombre de usuario que no supere los 15 caracteres");
+            }, 100);
+        } else {
+            username.classList.remove("error");
+            username.classList.remove("error-longitud");
+            setTimeout(() => {
+                iniciar_juego();
+            }, 150);
+        }
     } else {
       username.value = "";
       username.placeholder = "Nombre de usuario";
       username.classList.add("error");
       setTimeout(() => {
         alert("Ingrese un nombre de usuario para iniciar el juego");
-        }, 100);
+      }, 100);
     }
-  });
+});
   
 /**
  * Evento al hacer clic en el botón "Reiniciar".
@@ -211,9 +222,28 @@ function detener_juego() {
                                         reiniciar_config()">Reiniciar</button>                                
                                       </div>`;
     } else {
-      container_final.innerText = "¡Lo siento! Has perdido el juego";
+      container_final.innerHTML = `<div class="mensaje-final">
+                                        <h2 id="mensaje">¡Has perdido!</h2>
+                                        <h3 id="mensaje__h3-p">Se acabó el tiempo, ${usuario}</h3>
+                                        <p>Obtuviste ${aciertos} aciertos</p>
+                                        <h3>Top puntajes registrados</h3>
+                                        <div class="tabla_puntajes">
+                                            <ol id="puntajes">
+                                                <li>${usuario} - ${calcular_puntaje()}</li>
+                                                <li>${usuario} - ${calcular_puntaje()}</li>
+                                                <li>${usuario} - ${calcular_puntaje()}</li>
+                                            </ol>
+                                        </div>
+                                        <button id="reiniciar">Reiniciar</button>
+                                    </div>`;
     }
 }
+
+function mejoresPuntajes(){
+    var puntajes;
+    return puntajes;
+}
+
   
 /**
  * Reinicia el juego al hacer clic en el botón "Reiniciar".
