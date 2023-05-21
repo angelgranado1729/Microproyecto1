@@ -21,7 +21,7 @@ let carta_2;
 // Bloqueo para evitar seleccionar de más de 2 cartas al mismo tiempo
 let bloquear = false;
 // Tiempo de juego
-let tiempo_juego = 180000;
+let tiempo_juego = 0;
 let intervalo;
 let segundos = 0;
 let minutos = 3;
@@ -31,7 +31,7 @@ let aciertos = 0;
 let puntaje = 0;
 // Usuario
 let usuario = "";
-
+let aux = 0;
 /**
  * Inicializa el juego al mezclar las tarjetas.
  */
@@ -39,10 +39,8 @@ function iniciar_juego() {
   container_inicio.classList.add("ocultar");
   container_principal.classList.remove("ocultar");
   intervalo = setInterval(cronometro, 1000);
-  tiempo.innerHTML = `<span id="minutes">3</span>:<span id="seconds">00</span>`;
   points.innerHTML = `<span id="puntos">0</span>`;
   mezclar();
-  // detener_juego();
 }
 
 ////////////////////// Eventos //////////////////////
@@ -124,7 +122,6 @@ function comparar(carta1, carta2) {
     if (aciertos === 8) {
       detener_juego();
     }
-    console.log(aciertos);
   } else {
     // Error
     setTimeout(() => {
@@ -172,7 +169,7 @@ function voltear(e) {
  */
 function calcular_puntaje() {
   const puntaje_max = 500;
-  puntaje = parseFloat((puntaje_max * (tiempo_juego / 180000)).toFixed(2));
+  puntaje = parseFloat((puntaje_max * (1-(tiempo_juego / 180000)).toFixed(2)));
   return puntaje;
 }
 
@@ -182,19 +179,20 @@ function calcular_puntaje() {
  * Actualiza el cronómetro cada segundo y detiene el juego cuando se agota el tiempo.
  */
 const cronometro = () => {
+  if (segundos === 0 && minutos === 0) {
+    tiempo.innerHTML = `<span id="minutes">0</span>:<span id="seconds">00</span>`;
+    detener_juego();
+  }
   if (segundos === 0) {
     minutos--;
-    segundos = 60;
+    segundos = 59;
   }
   segundos--;
-  tiempo_juego -= 1000;
+  tiempo_juego += 1000;
   let segundos_aux = segundos < 10 ? `0${segundos}` : segundos;
   let minutos_aux = minutos < 10 ? `0${minutos}` : minutos;
   tiempo.innerHTML = `<span id="minutes">${minutos_aux}</span>:<span id="seconds">${segundos_aux}</span>`;
-
-  if (tiempo_juego <= 0) {
-    detener_juego();
-  }
+  
 };
 
 ///////////////////////// Funciones Auxiliares  /////////////////////////
@@ -215,9 +213,9 @@ function mezclar() {
  */
 function reiniciarTiempo() {
   minutos = 3;
-  segundos = 1;
-  tiempo_juego = 180000;
-  tiempo.innerHTML = `<span id="minutes">3</span>:<span id="seconds">00</span>`;
+  segundos = 0;
+  tiempo_juego = 0;
+  tiempo.innerHTML = `<span id="minutes">03</span>:<span id="seconds">00</span>`;
   clearInterval(intervalo);
   intervalo = setInterval(cronometro, 1000);
   cronometro();
@@ -227,6 +225,7 @@ function reiniciarTiempo() {
  * Detiene el juego y muestra el mensaje final.
  */
 function detener_juego() {
+  aux++;
   clearInterval(intervalo);
   puntaje = calcular_puntaje();
   container_principal.classList.add("ocultar");
@@ -248,7 +247,6 @@ function detener_juego() {
   }
 
   container_final.innerHTML = `
-    <div class="mensaje-final">
       ${mensajeFinalHTML}
       <h3>Top puntajes registrados</h3>
       <div class="tabla_puntajes">
@@ -298,16 +296,13 @@ function generarMensajeFinal() {
       fechaString + " - " + horas + ":" + minutosString + " " + periodo;
 
     mensaje_final += `<li id="top-player">
-    <div id="user">${element.username}</div>
-    <div id="ptos">${element.score} puntos</div>
+    <div id="user">${index + 1}. Jugador: ${element.username}</div>
+    <div id="ptos">Score: ${element.score} puntos</div>
     <div id="fecha">(${fechaHoraString})</div>
     </li>`;
   });
   return mensaje_final;
 }
-
-{/* <div id="posicion">${index + 1} </div> */}
-
 
 function mejoresPuntajes() {
   var users_data = [],
@@ -334,8 +329,8 @@ function mejoresPuntajes() {
 function guardarUsuario() {
     var num = localStorage.length;
     localStorage.setItem(
-    `info_usuario_${num + 1}`,
-    JSON.stringify({username: usuario, score: 3224, date: new Date()})
+    `info_usuario_${num + aux}`,
+    JSON.stringify({username: usuario, score: puntaje, date: new Date()})
   );
 }
 
@@ -347,6 +342,7 @@ function reiniciar_config() {
   points.innerHTML = `<span id="puntos">0</span>`;
   tarjetas.forEach((tarjeta) => {
     tarjeta.classList.remove("voltear");
+    tarjeta.classList.remove("match");
   });
   bloquear = false;
   carta_1 = null;

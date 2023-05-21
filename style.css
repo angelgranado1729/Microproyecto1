@@ -236,7 +236,6 @@ body {
     margin: 0 1vh;
 }
 
-
 .tablero {
     background: #fff;
     border-radius: 12px;
@@ -257,10 +256,11 @@ body {
 button{
     background: #ff8800;
     color: #ffffff;
-    /* font-weight: bold; */
+    height: 50px;
+    width: 120px;
     border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
+    border-radius: 6px;
+    padding: 3px 3px;
     font-size: 16px;
     cursor: pointer;
     margin: 0 8px;
@@ -403,7 +403,7 @@ button:hover {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     flex-direction: column;
     width: 350px;
-    height: 500px;
+    height: 580px;
   }
   
   .mensaje-final h2 {
@@ -451,26 +451,24 @@ button:hover {
     border-radius: 6px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     width: 280px;
-    height: 50px;
-    padding-bottom: 9px;
+    height: 70px;
+    padding-bottom: 5px;
     padding-top: 3px;
     background: #ff8800;
 } 
 
 #user {
-    font-size: 14px;
-    font-style: bold;
+    font-size: 18px;
+    font-weight: bold;
     color: #110a06;
 }
 
 #ptos{
-    font-size: 10px;
-    font-style: Bold;
+    font-size: 16px;
 }
 
 #fecha {
-    font-size: 8px;
-    font-style: Bold;
+    font-size: 12px;
     color: #fff;
 }
   
